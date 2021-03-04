@@ -10,7 +10,7 @@
 //   Red Hat, Inc. - initial API and implementation
 //
 
-package workspacerouting
+package devworkspacerouting
 
 import (
 	"context"
@@ -33,7 +33,7 @@ var routeDiffOpts = cmp.Options{
 	cmpopts.IgnoreFields(routeV1.RouteTargetReference{}, "Weight"),
 }
 
-func (r *WorkspaceRoutingReconciler) syncRoutes(routing *controllerv1alpha1.WorkspaceRouting, specRoutes []routeV1.Route) (ok bool, clusterRoutes []routeV1.Route, err error) {
+func (r *WorkspaceRoutingReconciler) syncRoutes(routing *controllerv1alpha1.DevWorkspaceRouting, specRoutes []routeV1.Route) (ok bool, clusterRoutes []routeV1.Route, err error) {
 	if !config.ControllerCfg.IsOpenShift() {
 		return true, nil, nil
 	}
@@ -79,7 +79,7 @@ func (r *WorkspaceRoutingReconciler) syncRoutes(routing *controllerv1alpha1.Work
 	return routesInSync, clusterRoutes, nil
 }
 
-func (r *WorkspaceRoutingReconciler) getClusterRoutes(routing *controllerv1alpha1.WorkspaceRouting) ([]routeV1.Route, error) {
+func (r *WorkspaceRoutingReconciler) getClusterRoutes(routing *controllerv1alpha1.DevWorkspaceRouting) ([]routeV1.Route, error) {
 	found := &routeV1.RouteList{}
 	labelSelector, err := labels.Parse(fmt.Sprintf("%s=%s", config.WorkspaceIDLabel, routing.Spec.WorkspaceId))
 	if err != nil {

@@ -14,7 +14,7 @@ spec:
     kind: WorkspaceRouting
     listKind: WorkspaceRoutingList
     plural: workspaceroutings
-    singular: workspacerouting
+    singular: devworkspacerouting
   scope: Namespaced
   versions:
   - name: v1alpha1

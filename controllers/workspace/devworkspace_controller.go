@@ -107,7 +107,7 @@ func (r *DevWorkspaceReconciler) Reconcile(req ctrl.Request) (reconcileResult ct
 	reqLogger = reqLogger.WithValues(config.WorkspaceIDLoggerKey, workspace.Status.WorkspaceId)
 	reqLogger.Info("Reconciling Workspace")
 
-	// Check if the WorkspaceRouting instance is marked to be deleted, which is
+	// Check if the DevWorkspaceRouting instance is marked to be deleted, which is
 	// indicated by the deletion timestamp being set.
 	if workspace.GetDeletionTimestamp() != nil {
 		reqLogger.Info("Finalizing DevWorkspace")
@@ -406,7 +406,7 @@ func (r *DevWorkspaceReconciler) SetupWithManager(mgr ctrl.Manager) error {
 		Owns(&appsv1.Deployment{}).
 		Owns(&batchv1.Job{}).
 		Owns(&controllerv1alpha1.Component{}).
-		Owns(&controllerv1alpha1.WorkspaceRouting{}).
+		Owns(&controllerv1alpha1.DevWorkspaceRouting{}).
 		WithEventFilter(predicates).
 		Complete(r)
 }

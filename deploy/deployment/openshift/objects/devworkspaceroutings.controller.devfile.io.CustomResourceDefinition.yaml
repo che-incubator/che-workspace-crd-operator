@@ -7,20 +7,22 @@ metadata:
   labels:
     app.kubernetes.io/name: devworkspace-controller
     app.kubernetes.io/part-of: devworkspace-operator
-  name: workspaceroutings.controller.devfile.io
+  name: devworkspaceroutings.controller.devfile.io
 spec:
   group: controller.devfile.io
   names:
-    kind: WorkspaceRouting
-    listKind: WorkspaceRoutingList
-    plural: workspaceroutings
+    kind: DevWorkspaceRouting
+    listKind: DevWorkspaceRoutingList
+    plural: devworkspaceroutings
+    shortNames:
+    - dwr
     singular: devworkspacerouting
   scope: Namespaced
   versions:
   - name: v1alpha1
     schema:
       openAPIV3Schema:
-        description: WorkspaceRouting is the Schema for the workspaceroutings API
+        description: DevWorkspaceRouting is the Schema for the devworkspaceroutings API
         properties:
           apiVersion:
             description: 'APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
@@ -31,7 +33,7 @@ spec:
           metadata:
             type: object
           spec:
-            description: WorkspaceRoutingSpec defines the desired state of WorkspaceRouting
+            description: DevWorkspaceRoutingSpec defines the desired state of DevWorkspaceRouting
             properties:
               endpoints:
                 additionalProperties:
@@ -102,7 +104,7 @@ spec:
             - workspaceId
             type: object
           status:
-            description: WorkspaceRoutingStatus defines the observed state of WorkspaceRouting
+            description: DevWorkspaceRoutingStatus defines the observed state of DevWorkspaceRouting
             properties:
               exposedEndpoints:
                 additionalProperties:

@@ -17,8 +17,8 @@ import (
 	"flag"
 	"os"
 
-	"github.com/devfile/devworkspace-operator/controllers/controller/workspacerouting"
-	"github.com/devfile/devworkspace-operator/controllers/controller/workspacerouting/solvers"
+	"github.com/devfile/devworkspace-operator/controllers/controller/devworkspacerouting"
+	"github.com/devfile/devworkspace-operator/controllers/controller/devworkspacerouting/solvers"
 	"github.com/devfile/devworkspace-operator/internal/cluster"
 	"github.com/devfile/devworkspace-operator/pkg/config"
 	"github.com/devfile/devworkspace-operator/pkg/webhook"
@@ -89,13 +89,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err = (&workspacerouting.WorkspaceRoutingReconciler{
+	if err = (&devworkspacerouting.WorkspaceRoutingReconciler{
 		Client:       mgr.GetClient(),
-		Log:          ctrl.Log.WithName("controllers").WithName("WorkspaceRouting"),
+		Log:          ctrl.Log.WithName("controllers").WithName("DevWorkspaceRouting"),
 		Scheme:       mgr.GetScheme(),
 		SolverGetter: &solvers.SolverGetter{},
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "WorkspaceRouting")
+		setupLog.Error(err, "unable to create controller", "controller", "DevWorkspaceRouting")
 		os.Exit(1)
 	}
 	if err = (&workspacecontroller.DevWorkspaceReconciler{
