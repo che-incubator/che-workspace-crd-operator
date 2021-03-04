@@ -54,7 +54,7 @@ var _ = ginkgo.Describe("[Create OpenShift Web Terminal Workspace]", func() {
 
 	var podName string
 	ginkgo.It("Check that pod creator can execute a command in the container", func() {
-		podSelector := "controller.devfile.io/workspace_name=web-terminal"
+		podSelector := "controller.devfile.io/devworkspace_name=web-terminal"
 		var err error
 		podName, err = config.AdminK8sClient.GetPodNameBySelector(podSelector, config.WorkspaceNamespace)
 		if err != nil {
